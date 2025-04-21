@@ -27,11 +27,11 @@ public class Brad09 {
 		
 		System.out.printf("%d 年是 %s年", year, isLeap?"潤":"平");
 		System.out.println("-----");
-		if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
-			isLeap = true;
-		}else {
-			isLeap = false;
-		}
+//		if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+//			isLeap = true;
+//		}else {
+//			isLeap = false;
+//		}
 		
 	}
 
