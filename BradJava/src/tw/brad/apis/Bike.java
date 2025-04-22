@@ -3,6 +3,10 @@ package tw.brad.apis;
 public class Bike {
 	protected double speed;
 	
+	public Bike() {
+		System.out.println("Bike()");
+	}
+	
 	public void upSpeed() {
 		speed = speed < 1 ? 1 : speed*1.4;
 	}
