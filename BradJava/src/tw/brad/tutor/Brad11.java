@@ -20,7 +20,11 @@ public class Brad11 {
 		for(int v : a) {
 			System.out.println(v);
 		}
-		
+		System.out.println("---");
+		System.out.println(a);
+		System.out.println("---");
+		int b = 3;
+		System.out.println(b);
 		
 		
 	}
