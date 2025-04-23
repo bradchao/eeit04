@@ -8,7 +8,7 @@ public class Bike{
 		System.out.println("Bike()");
 	}
 	public Bike(int a) {
-		System.out.println("Bike(int)");
+		System.out.println(String.format("Bike(%d)", a));
 	}
 	
 	public void upSpeed() {
@@ -21,4 +21,10 @@ public class Bike{
 	public double getSpeed() {
 		return speed;
 	}
+	
+	@Override
+	public String toString() {
+		return "Bike Speed = " + speed;
+	}
+	
 }
