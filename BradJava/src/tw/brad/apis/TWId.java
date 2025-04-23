@@ -16,8 +16,20 @@ public class TWId {
 		this((int)(Math.random()*2) == 0, area);
 	}
 	public TWId(boolean isMale, char area) {
+		StringBuffer sb = new StringBuffer();
+		sb.append(area);
+		sb.append(isMale?'1':'2');
+		for (int i=0; i<7; i++) sb.append(new Random().nextInt(10));
 		
+		for (int i=0; i<10; i++) {
+			if (checkTWId(sb.toString() + i)) {
+				id = sb.toString() + i;
+				break;
+			}
+		}
 	}
+	
+	public String getId() {return id;}
 	
 //	public TWId(String id) {
 //		if (checkTWId(id)) {
