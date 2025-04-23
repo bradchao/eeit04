@@ -2,6 +2,8 @@ package tw.brad.apis;
 
 public class Scooter extends Bike{
 	public Scooter() {
+		// super();
+		super(2);
 		System.out.println("Scooter()");
 	}
 	public void upSpeed() {

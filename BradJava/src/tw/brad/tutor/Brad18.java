@@ -9,6 +9,8 @@ public class Brad18 extends JFrame{
 	private JButton b1, b2, b3;
 	
 	public Brad18() {
+		// super();
+		super("偶的視窗");
 		b1 = new JButton("B1");
 		b2 = new JButton("B2");
 		b3 = new JButton("B3");

@@ -1,10 +1,14 @@
 package tw.brad.apis;
 
-public class Bike {
+public class Bike{
 	protected double speed;
 	
 	public Bike() {
+		// super();
 		System.out.println("Bike()");
+	}
+	public Bike(int a) {
+		System.out.println("Bike(int)");
 	}
 	
 	public void upSpeed() {
