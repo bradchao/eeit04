@@ -1,7 +1,34 @@
 package tw.brad.apis;
 
-public class TWId {
+import java.util.Random;
 
+public class TWId {
+	private String id;
+	private static String letters = "ABCDEFGHJKLMNPQRSTUVXYWZIO";
+	
+	public TWId() {
+		this((int)(Math.random()*2) == 0);
+	}
+	public TWId(boolean isMale) {
+		this(isMale, letters.charAt(new Random().nextInt(26)));
+	}
+	public TWId(char area) {
+		this((int)(Math.random()*2) == 0, area);
+	}
+	public TWId(boolean isMale, char area) {
+		
+	}
+	
+//	public TWId(String id) {
+//		if (checkTWId(id)) {
+//			this.id = id;
+//		}else {
+//			
+//		}
+//	}
+	
+	
+	
 	public static boolean checkTWId(String id) {
 		boolean isRight = false;
 		/*
@@ -15,7 +42,7 @@ public class TWId {
 			}
 		}
 		*/
-		String letters = "ABCDEFGHJKLMNPQRSTUVXYWZIO";
+		
 		if (id.matches("[A-Z][12][0-9]{8}")) {
 			char c1 = id.charAt(0);
 			int a12 = letters.indexOf(c1) + 10;
