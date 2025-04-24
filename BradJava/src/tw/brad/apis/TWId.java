@@ -30,17 +30,18 @@ public class TWId {
 	}
 	
 	public String getId() {return id;}
-	
-//	public TWId(String id) {
-//		if (checkTWId(id)) {
-//			this.id = id;
-//		}else {
-//			
-//		}
-//	}
-	
-	
-	
+	//------------------------------------
+	private TWId(String id) {
+		this.id = id;
+	}
+	public static TWId createTWId(String id) {
+		if (checkTWId(id)) {
+			return new TWId(id);
+		}else {
+			return null;
+		}
+	}
+	//----------------------------------
 	public static boolean checkTWId(String id) {
 		boolean isRight = false;
 		/*
