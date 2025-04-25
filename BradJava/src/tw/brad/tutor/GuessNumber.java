@@ -49,11 +49,28 @@ public class GuessNumber extends JFrame{
 	}
 	
 	private void guess() {
+		String inputText = input.getText();
+		String result = checkAB(inputText);
+		log.append(String.format("%s => %s\n", inputText, result ));
 		
+		input.setText("");
 	}
 	
 	private void initGame() {
 		answer = createAnswer(3);
+		//System.out.println(answer);
+	}
+	
+	private String checkAB(String g) {
+		int A = 0, B = 0;
+		for (int i=0; i<answer.length(); i++) {
+			if (answer.charAt(i) == g.charAt(i)) {
+				A++;
+			}else if(answer.indexOf(g.charAt(i)) != -1) {
+				B++;
+			}
+		}
+		return String.format("%dA%dB", A,B);
 	}
 	
 	private static String createAnswer(int d) {
