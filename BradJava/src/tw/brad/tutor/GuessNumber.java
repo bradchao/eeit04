@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -15,6 +16,7 @@ public class GuessNumber extends JFrame{
 	private JButton guess;
 	private JTextArea log;
 	private String answer;
+	private int i;
 	
 	public GuessNumber() {
 		super("猜數字遊戲");
@@ -49,16 +51,24 @@ public class GuessNumber extends JFrame{
 	}
 	
 	private void guess() {
+		i++;
 		String inputText = input.getText();
 		String result = checkAB(inputText);
 		log.append(String.format("%s => %s\n", inputText, result ));
-		
 		input.setText("");
+		
+		if (result.equals("3A0B")) {
+			JOptionPane.showMessageDialog(null,"WINNER");
+		}else if (i == 3) {
+			JOptionPane.showMessageDialog(null,"LOSER:" + answer);
+		}
+		
 	}
 	
 	private void initGame() {
 		answer = createAnswer(3);
-		//System.out.println(answer);
+		i = 0;
+		System.out.println(answer);
 	}
 	
 	private String checkAB(String g) {
