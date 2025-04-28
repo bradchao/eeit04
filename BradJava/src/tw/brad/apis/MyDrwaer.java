@@ -11,13 +11,14 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 public class MyDrwaer extends JPanel{
-	private ArrayList<Line> lines;
+	private ArrayList<Line> lines, recycle;
 	
 	
 	public MyDrwaer() {
 		setBackground(Color.YELLOW);
 		
 		lines = new ArrayList<Line>();
+		recycle = new ArrayList<Line>();
 		
 		MyListener myListener = new MyListener();
 		addMouseListener(myListener);
@@ -30,6 +31,7 @@ public class MyDrwaer extends JPanel{
 			Line line = new Line();
 			line.addPoint(e.getX(), e.getY());
 			lines.add(line);
+			recycle.clear();
 		}
 		
 		@Override
@@ -49,6 +51,7 @@ public class MyDrwaer extends JPanel{
 		g2d.setColor(Color.BLUE);
 		
 		for (Line line : lines) {
+			
 			for (int i = 1; i < line.length(); i++) {
 				Point p1 = line.getPoint(i-1);
 				Point p2 = line.getPoint(i);
@@ -59,9 +62,22 @@ public class MyDrwaer extends JPanel{
 	
 	public void clear() {
 		lines.clear();
+		recycle.clear();
 		repaint();
 	}
 	
-	
-	
+	public void undo() {
+		if (lines.size()>0) {
+			recycle.add(lines.removeLast()) ;
+			repaint();
+		}
+	}
+
+	public void redo() {
+		if (recycle.size()>0) {
+			lines.add(recycle.removeLast());
+			repaint();
+		}
+	}
+
 }
