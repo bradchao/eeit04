@@ -8,17 +8,16 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.DebugGraphics;
 import javax.swing.JPanel;
 
 public class MyDrwaer extends JPanel{
-	private ArrayList<Point> line;
+	private ArrayList<Line> lines;
 	
 	
 	public MyDrwaer() {
 		setBackground(Color.YELLOW);
 		
-		line = new ArrayList<Point>();
+		lines = new ArrayList<Line>();
 		
 		MyListener myListener = new MyListener();
 		addMouseListener(myListener);
@@ -28,12 +27,15 @@ public class MyDrwaer extends JPanel{
 	private class MyListener extends MouseAdapter {
 		@Override
 		public void mousePressed(MouseEvent e) {
-			System.out.println(String.format("Press: %d x %d", e.getX(), e.getY()));
+			Line line = new Line();
+			line.addPoint(e.getX(), e.getY());
+			lines.add(line);
 		}
 		
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			System.out.println(String.format("Drag: %d x %d", e.getX(), e.getY()));
+			lines.getLast().addPoint(e.getX(), e.getY());
+			repaint();
 		}
 	}
 	
@@ -43,10 +45,20 @@ public class MyDrwaer extends JPanel{
 		super.paintComponent(g);
 		
 		Graphics2D g2d = (Graphics2D)g;
+		g2d.setStroke(new BasicStroke(4));
+		g2d.setColor(Color.BLUE);
 		
-		g2d.setStroke(new BasicStroke(10));
-		g2d.setColor(Color.RED);
-		g2d.drawLine(0, 0, 200, 400);
+		for (Line line : lines) {
+			for (int i = 1; i < line.length(); i++) {
+				Point p1 = line.getPoint(i-1);
+				Point p2 = line.getPoint(i);
+				g2d.drawLine(p1.x, p1.y, p2.x, p2.y);
+			}			
+		}
+		
+		
+
+		
 		
 		
 	}
