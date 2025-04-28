@@ -55,12 +55,13 @@ public class MyDrwaer extends JPanel{
 				g2d.drawLine(p1.x, p1.y, p2.x, p2.y);
 			}			
 		}
-		
-		
-
-		
-		
-		
 	}
+	
+	public void clear() {
+		lines.clear();
+		repaint();
+	}
+	
+	
 	
 }
