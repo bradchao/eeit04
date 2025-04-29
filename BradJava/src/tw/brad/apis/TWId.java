@@ -31,16 +31,24 @@ public class TWId {
 	
 	public String getId() {return id;}
 	//------------------------------------
-	private TWId(String id) {
-		this.id = id;
-	}
-	public static TWId createTWId(String id) {
+	public TWId(String id) throws Exception{
 		if (checkTWId(id)) {
-			return new TWId(id);
+			this.id = id;
 		}else {
-			return null;
+			throw new Exception();
 		}
 	}
+	//------------------------------------
+//	private TWId(String id) {
+//		this.id = id;
+//	}
+//	public static TWId createTWId(String id) {
+//		if (checkTWId(id)) {
+//			return new TWId(id);
+//		}else {
+//			return null;
+//		}
+//	}
 	//----------------------------------
 	public static boolean checkTWId(String id) {
 		boolean isRight = false;
