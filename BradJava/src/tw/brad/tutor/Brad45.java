@@ -1,18 +1,17 @@
 package tw.brad.tutor;
 
+import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 public class Brad45 {
 	public static void main(String[] args) {
 		try {
-			FileInputStream fin = new FileInputStream("dir1/file2.txt");
+			File file = new File("dir1/file2.txt");
+			FileInputStream fin = new FileInputStream(file);
 			
-			int c;
-			while ( (c = fin.read()) != -1) {
-				System.out.print((char)c);
-			}
-			
+			int len; byte[] buf = new byte[(int)file.length()];	// 0 , 0
+			fin.read(buf);
+			System.out.println(new String(buf));
 			
 			fin.close();
 			//System.out.println("OK");
