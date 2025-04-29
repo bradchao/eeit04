@@ -12,9 +12,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import tw.brad.apis.MyDrwaer;
+import tw.brad.apis.MyDrwaer2;
 
 public class MySign extends JFrame{
-	private MyDrwaer myDrwaer;
+	private MyDrwaer2 myDrwaer;
 	private JButton clear, undo, redo, chColor;
 	
 	public MySign() {
@@ -26,7 +27,7 @@ public class MySign extends JFrame{
 		redo = new JButton("Redo");
 		chColor = new JButton("Color");
 		
-		myDrwaer = new MyDrwaer();
+		myDrwaer = new MyDrwaer2();
 		add(myDrwaer, BorderLayout.CENTER);
 		
 		JPanel top = new JPanel(new FlowLayout());
