@@ -71,9 +71,10 @@ public class MySign extends JFrame{
 	}
 	
 	private void changeColor() {
-		Color newColor = JColorChooser.showDialog(null, "Change Color", Color.BLUE);
+		Color newColor = JColorChooser.showDialog(null, 
+				"Change Color", myDrwaer.getDefaultColor());
 		if (newColor != null) {
-			
+			myDrwaer.setDefaultColor(newColor);
 		}
 	}
 	
