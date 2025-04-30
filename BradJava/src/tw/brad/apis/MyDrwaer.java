@@ -7,7 +7,9 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
@@ -99,5 +101,17 @@ public class MyDrwaer extends JPanel{
 		oout.flush();
 		oout.close();
 	}
+	
+	public void loadObj(File loadFile) throws Exception {
+		ObjectInputStream oin = 
+			new ObjectInputStream(
+				new FileInputStream(loadFile));
+		lines = (ArrayList<Line>)oin.readObject();
+		oin.close();
+		
+		recycle.clear();
+		repaint();
+	}
+	
 	
 }

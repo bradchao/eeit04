@@ -110,6 +110,15 @@ public class MySign extends JFrame{
 		
 	}
 	private void loadObj() {
+		JFileChooser jfc = new JFileChooser(new File("."));
+		if (jfc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+			File loadFile = jfc.getSelectedFile();
+			try {
+				myDrwaer.loadObj(loadFile);
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Load Failure:" + e.toString());
+			}
+		}
 		
 	}
 	
