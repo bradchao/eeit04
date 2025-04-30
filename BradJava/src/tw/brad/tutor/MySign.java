@@ -5,18 +5,20 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import tw.brad.apis.MyDrwaer;
-import tw.brad.apis.MyDrwaer2;
 
 public class MySign extends JFrame{
-	private MyDrwaer2 myDrwaer;
-	private JButton clear, undo, redo, chColor;
+	private MyDrwaer myDrwaer;
+	private JButton clear, undo, redo, chColor, saveObj, loadObj;
 	
 	public MySign() {
 		super("Sign App");
@@ -26,13 +28,15 @@ public class MySign extends JFrame{
 		undo = new JButton("Undo");
 		redo = new JButton("Redo");
 		chColor = new JButton("Color");
+		saveObj = new JButton("Save Object");
+		loadObj = new JButton("Load Object");
 		
-		myDrwaer = new MyDrwaer2();
+		myDrwaer = new MyDrwaer();
 		add(myDrwaer, BorderLayout.CENTER);
 		
 		JPanel top = new JPanel(new FlowLayout());
 		top.add(clear); top.add(undo); top.add(redo);
-		top.add(chColor);
+		top.add(chColor);top.add(saveObj);top.add(loadObj); 
 		
 		add(top, BorderLayout.NORTH);
 		
@@ -68,6 +72,18 @@ public class MySign extends JFrame{
 				changeColor();
 			}
 		});
+		saveObj.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				saveObj();
+			}
+		});
+		loadObj.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				loadObj();
+			}
+		});
 		
 	}
 	
@@ -77,6 +93,24 @@ public class MySign extends JFrame{
 		if (newColor != null) {
 			myDrwaer.setDefaultColor(newColor);
 		}
+	}
+	
+	private void saveObj() {
+		JFileChooser jfc = new JFileChooser(new File("."));
+		int ret = jfc.showSaveDialog(null);
+		if (ret == JFileChooser.APPROVE_OPTION) {
+			File saveFile = jfc.getSelectedFile();
+			try {
+				myDrwaer.saveObj(saveFile);
+				JOptionPane.showMessageDialog(null, "Save Success");
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Save Failure:" + e.toString());
+			}
+		}
+		
+	}
+	private void loadObj() {
+		
 	}
 	
 	
