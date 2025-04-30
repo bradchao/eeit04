@@ -6,13 +6,16 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class MyDrwaer extends JPanel{
@@ -111,6 +114,24 @@ public class MyDrwaer extends JPanel{
 		
 		recycle.clear();
 		repaint();
+	}
+	
+	public boolean saveJPEG() throws Exception{
+		BufferedImage img = 
+			new BufferedImage(
+					getWidth(), 
+					getHeight(), 
+					BufferedImage.TYPE_INT_RGB);
+		Graphics2D g2d = img.createGraphics();
+		paint(g2d);
+		
+		try {
+			return ImageIO.write(img, "jpg", new File("dir2/brad.jpg"));
+		} catch (IOException e) {
+			throw new Exception();
+		}
+		
+		
 	}
 	
 	

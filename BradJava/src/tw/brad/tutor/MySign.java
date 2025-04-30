@@ -75,7 +75,12 @@ public class MySign extends JFrame{
 		saveObj.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				saveObj();
+				//saveObj();
+				try {
+					myDrwaer.saveJPEG();
+				} catch (Exception e1) {
+					System.out.println(e1);
+				}
 			}
 		});
 		loadObj.addActionListener(new ActionListener() {
