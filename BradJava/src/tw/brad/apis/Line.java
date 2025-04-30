@@ -1,9 +1,10 @@
 package tw.brad.apis;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Line {
+public class Line implements Serializable{
 	private ArrayList<Point> points;
 	private Color color;
 	
