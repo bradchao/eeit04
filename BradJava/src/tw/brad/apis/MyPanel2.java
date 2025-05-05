@@ -2,8 +2,12 @@ package tw.brad.apis;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -14,10 +18,10 @@ public class MyPanel2 extends JPanel{
 	private BufferedImage[] ballImgs;
 	private Timer timer;
 	private int viewW, viewH;
-	private BallTask ball;
+	private LinkedList<BallTask> balls;
 	
 	public MyPanel2() {
-		setBackground(Color.YELLOW);
+		setBackground(Color.GREEN);
 		ballImgs = new BufferedImage[3];
 		try {
 			ballImgs[0] = ImageIO.read(new File("dir2/ball.png"));
@@ -26,11 +30,25 @@ public class MyPanel2 extends JPanel{
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		timer = new Timer();
-		ball = new BallTask(43, 77, 4, -7);
 		
+		balls = new LinkedList<>();
+		
+		timer = new Timer();
 		timer.schedule(new RefreshView(), 0, 16);
-		timer.schedule(ball, 1*1000, 10);
+		
+		addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				newBall(e.getX(), e.getY());
+			}
+		});
+	}
+	
+	private void newBall(int x, int y) {
+		BallTask ball = new BallTask(x, y, 
+			(int)(Math.random()*9-4), (int)(Math.random()*9-4));
+		balls.add(ball);
+		timer.schedule(ball, 500, 20);
 	}
 	
 
@@ -42,7 +60,7 @@ public class MyPanel2 extends JPanel{
 		public BallTask(int ballX, int ballY, int dx, int dy) {
 			this.ballX = ballX; this.ballY = ballY;
 			this.dx = dx; this.dy = dy;
-			imgIndex = (int)Math.random()*3;
+			imgIndex = (int)(Math.random()*3);
 			ballW = ballImgs[imgIndex].getWidth();
 			ballH = ballImgs[imgIndex].getHeight();
 		}
@@ -72,7 +90,9 @@ public class MyPanel2 extends JPanel{
 		super.paintComponent(g);
 		viewW = getWidth(); viewH = getHeight();
 		
-		g.drawImage(ballImgs[ball.imgIndex], ball.ballX, ball.ballY, null);
+		for (BallTask ball : balls) {
+			g.drawImage(ballImgs[ball.imgIndex], ball.ballX, ball.ballY, null);
+		}
 		
 	}
 	
