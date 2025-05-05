@@ -48,7 +48,7 @@ public class MyPanel2 extends JPanel{
 		BallTask ball = new BallTask(x, y, 
 			(int)(Math.random()*9-4), (int)(Math.random()*9-4));
 		balls.add(ball);
-		timer.schedule(ball, 500, 20);
+		timer.schedule(ball, 1000, 20);
 	}
 	
 
@@ -57,12 +57,13 @@ public class MyPanel2 extends JPanel{
 		private int ballW, ballH;
 		private int imgIndex;
 		
-		public BallTask(int ballX, int ballY, int dx, int dy) {
-			this.ballX = ballX; this.ballY = ballY;
+		public BallTask(int clickX, int clickY, int dx, int dy) {
 			this.dx = dx; this.dy = dy;
 			imgIndex = (int)(Math.random()*3);
 			ballW = ballImgs[imgIndex].getWidth();
 			ballH = ballImgs[imgIndex].getHeight();
+			this.ballX = clickX - (int)(ballW/2.0); 
+			this.ballY = clickY - (int)(ballH/2.0);
 		}
 		
 		@Override
