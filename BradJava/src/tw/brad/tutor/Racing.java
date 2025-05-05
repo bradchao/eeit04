@@ -40,6 +40,10 @@ public class Racing extends JFrame{
 	}
 	
 	private void go() {
+		go.setEnabled(false);
+		for (int i=0; i<lanes.length;i++) {
+			lanes[i].setText("");
+		}
 		cars = new Car[8];
 		for (int i=0; i<cars.length; i++) {
 			cars[i] = new Car(i);
@@ -59,14 +63,27 @@ public class Racing extends JFrame{
 		@Override
 		public void run() {
 			for (int i=0; i<100; i++) {
-				lanes[lane].setText(sb.append(">").toString());
+				if (i==99) {
+					lanes[lane].setText(sb.append("> WINNER").toString());
+					stopGame();
+				}else {
+					lanes[lane].setText(sb.append(">").toString());
+				}
 				try {
-					Thread.sleep(100);
+					Thread.sleep(10 + (int)(Math.random()*200));
 				} catch (InterruptedException e) {
+					break;
 				}
 			}
 		}
 		
+	}
+	
+	private void stopGame() {
+		for (int i=0; i<cars.length; i++) {
+			cars[i].interrupt();
+		}
+		go.setEnabled(true);
 	}
 	
 	public static void main(String[] args) {
