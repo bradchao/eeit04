@@ -15,6 +15,13 @@ public class Brad64 {
 		
 		System.out.println("main finish");
 		
+		new Thread() {
+			public void run() {
+				
+			}
+		}.start();
+		
+		
 	}
 }
 class Brad641 extends Thread{
