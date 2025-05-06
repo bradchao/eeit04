@@ -1,0 +1,7 @@
+Mac:
+> cd /Application/XAMPP/bin
+> ./mysql -u root -p 
+
+Windows
+> cd ....
+> mysql -u -root -p
