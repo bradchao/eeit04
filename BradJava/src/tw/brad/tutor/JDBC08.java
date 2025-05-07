@@ -53,6 +53,13 @@ public class JDBC08 {
 		prop.put("password", PASSWD);
 		
 		try (Connection conn = DriverManager.getConnection(URL, prop)){
+			String delAll = "DELETE FROM gift";
+			Statement stmt = conn.createStatement();
+			stmt.execute(delAll);
+			
+			String zero = "ALTER TABLE gift AUTO_INCREMENT = 1";
+			stmt.execute(zero);
+			
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			
 			JSONArray root = new JSONArray(json);
