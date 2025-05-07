@@ -11,3 +11,5 @@ Windows
 > CREATE DATABASE db1;
 > USE db1;
 > CREATE TABLE t1 (id INT, f1 VARCHAR(10));
+
+netstat -aon | findstr ":3306"
