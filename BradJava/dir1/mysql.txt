@@ -46,7 +46,14 @@ WHERE OrderID IN
 	SELECT OrderID FROM orders
 	WHERE EmployeeID = 5
 )
-
+-------------------------------------
+ORDER BY
+	CASE
+		WHEN name LIKE '%xx%' THEN 1
+		WHEN desc LIKE '%xx%' THEN 2
+		ELSE 3
+	END,
+	name DESC
 
 
 

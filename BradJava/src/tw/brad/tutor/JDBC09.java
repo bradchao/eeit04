@@ -14,7 +14,13 @@ public class JDBC09 {
 	private static final String PASSWD = "root";
 	private static final String SQL = 
 		"SELECT id,name pname, feature,city,town FROM gift " + 
-			"WHERE name LIKE ? OR feature LIKE ? OR city LIKE ? OR town LIKE ?";
+			"WHERE name LIKE ? OR feature LIKE ? OR city LIKE ? OR town LIKE ? " +
+			"ORDER BY " + 
+				"CASE " + 
+					"WHEN name LIKE ? THEN 1 " +
+					"ELSE 2 " +
+				"END, " +
+				"id ASC";
 
 	public static void main(String[] args) {
 		Scanner scaner = new Scanner(System.in);
@@ -33,6 +39,7 @@ public class JDBC09 {
 			pstmt.setString(2, kw);
 			pstmt.setString(3, kw);
 			pstmt.setString(4, kw);
+			pstmt.setString(5, kw);
 			
 			ResultSet rs = pstmt.executeQuery();			
 			while (rs.next()) {
