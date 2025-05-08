@@ -40,7 +40,12 @@ ORDER BY total DESC
 
 5 Buchanan 75567.7500
 ---------------------------------------------
-
+SELECT SUM(UnitPrice*Quantity) FROM orderdetails
+WHERE OrderID IN
+(
+	SELECT OrderID FROM orders
+	WHERE EmployeeID = 5
+)
 
 
 
