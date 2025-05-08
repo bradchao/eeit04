@@ -13,3 +13,27 @@ Windows
 > CREATE TABLE t1 (id INT, f1 VARCHAR(10));
 
 netstat -aon | findstr ":3306"
+-------------------------------------
+SELECT CompanyName, Phone FROM suppliers
+WHERE SupplierID IN
+(
+	SELECT SupplierID FROM products 
+	WHERE CategoryID = 
+	(
+		SELECT CategoryID FROM categories 
+		WHERE CategoryName = 'Seafood'
+	)
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
