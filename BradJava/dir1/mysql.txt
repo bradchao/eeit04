@@ -24,7 +24,22 @@ WHERE SupplierID IN
 		WHERE CategoryName = 'Seafood'
 	)
 )
+----------------------------------------
+SELECT o.OrderID,c.CompanyName, e.LastName, e.FirstName 
+FROM orders o
+JOIN employees e ON (o.EmployeeID = e.EmployeeID)
+JOIN customers c ON (o.CustomerID = c.CustomerID)
+WHERE RequiredDate < ShippedDate AND
+OrderDate >= '1997-01-01'
+------------------------------------------
+SELECT e.EmployeeID, e.LastName, SUM(od.UnitPrice*od.Quantity) total FROM orders o
+JOIN orderdetails od ON (o.OrderID = od.OrderID)
+JOIN employees e ON (o.EmployeeID = e.EmployeeID)
+GROUP BY o.EmployeeID
+ORDER BY total DESC
 
+5 Buchanan 75567.7500
+---------------------------------------------
 
 
 
