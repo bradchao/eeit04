@@ -12,7 +12,7 @@ public class GiftDB {
 	private static final String USER = "root";
 	private static final String PASSWD = "root";
 	private static Connection conn;	// ?
-	private static final String SQL = "SELECT * FROM gift";
+	private static final String SQL = "SELECT id 編號, name 名稱, feature 特色, tel 電話 FROM gift";
 	private ResultSet rs;
 	private String[] fieldNames;
 	
@@ -75,5 +75,18 @@ public class GiftDB {
 		}
 	}
 	
+	public void updateData(String newdata, int row, int col) {
+		if (col >= 1 && col <= 6) {
+			try {
+				rs.absolute(row+1);
+				rs.updateString(col+1, newdata);;
+				rs.updateRow();
+			}catch(Exception e) {
+				System.out.println(e);
+			}
+		}
+	}
+	
+	public String[] getColNames() {return fieldNames;}
 	
 }
