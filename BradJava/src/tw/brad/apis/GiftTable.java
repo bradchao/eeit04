@@ -5,8 +5,16 @@ import javax.swing.table.DefaultTableModel;
 
 public class GiftTable extends JTable{
 	private GiftModel model;
+	private GiftDB db;
 	
 	public GiftTable() {
+		
+		try {
+			db = new GiftDB();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
 		model = new GiftModel();
 		setModel(model);
 	}
@@ -15,7 +23,7 @@ public class GiftTable extends JTable{
 
 		@Override
 		public int getRowCount() {
-			return 10;
+			return db.getRows();
 		}
 
 		@Override
