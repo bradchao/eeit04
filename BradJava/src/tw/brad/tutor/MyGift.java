@@ -3,6 +3,7 @@ package tw.brad.tutor;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
 import tw.brad.apis.GiftTable;
 
@@ -14,7 +15,8 @@ public class MyGift extends JFrame{
 		
 		setLayout(new BorderLayout());
 		table = new GiftTable();
-		add(table, BorderLayout.CENTER);
+		JScrollPane jsp = new JScrollPane(table);
+		add(jsp, BorderLayout.CENTER);
 		
 		
 		

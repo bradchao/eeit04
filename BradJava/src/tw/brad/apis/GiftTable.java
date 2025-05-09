@@ -28,17 +28,16 @@ public class GiftTable extends JTable{
 
 		@Override
 		public int getColumnCount() {
-			return 4;
+			return db.getCols();
 		}
 
 		@Override
 		public Object getValueAt(int row, int column) {
-			return "Brad";
+			return db.getData(row, column);
 		}
 
 		@Override
 		public void setValueAt(Object aValue, int row, int column) {
-			// TODO Auto-generated method stub
 			super.setValueAt(aValue, row, column);
 		}
 		
