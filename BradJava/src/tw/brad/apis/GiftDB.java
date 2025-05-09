@@ -38,7 +38,7 @@ public class GiftDB {
 		fieldNames = new String[rsmd.getColumnCount()];
 		for (int i=1; i<=fieldNames.length; i++) {
 			fieldNames[i-1] = rsmd.getColumnLabel(i);
-			System.out.println(fieldNames[i-1]);
+			//System.out.println(fieldNames[i-1]);
 		}
 		
 	}
@@ -63,6 +63,15 @@ public class GiftDB {
 			return rs.getString(col+1);
 		}catch(Exception e) {
 			return "ERROR";
+		}
+	}
+	
+	public void delData(int row) {
+		try {
+			rs.absolute(row+1);
+			rs.deleteRow();
+		}catch(Exception e) {
+			System.out.println(e);
 		}
 	}
 	

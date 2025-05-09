@@ -19,6 +19,14 @@ public class GiftTable extends JTable{
 		setModel(model);
 	}
 	
+	public void delRow() {
+		int del = getSelectedRow();
+		if (del != -1) {
+			db.delData(del);
+			repaint();
+		}
+	}
+	
 	private class GiftModel extends DefaultTableModel {
 
 		@Override
